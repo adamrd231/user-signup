@@ -9,10 +9,29 @@ app.config['DEBUG'] = True
 def index():
     return render_template("user-signup.html")
 
-@app.route("/welcome", methods=['POST'])
+@app.route("/", methods=['POST'])
 def sign_up():
     username = request.form[('username')]
-    return render_template('welcome.html', username=username)
+    password = request.form[('password')]
+    verify = request.form[('verify')]
+    email = request.form[('email')]
+
+    username_error = ""
+    password_error = ""
+    verify_error = ""
+
+    if username == "":
+        username_error = "Please Enter Your Username"
+
+    if 1 == 1:
+        return render_template('user-signup.html',
+                                 username=username,
+                                 username_error=username_error,
+                                 password_error=password_error,
+                                 verify_error=verify_error
+                                 )
+    else:
+        return render_template('/welcome.html', username=username)
 
 
 
