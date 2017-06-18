@@ -8,18 +8,22 @@
       <form action="/" method="post">
         <label for="username">Username</label>
         <input id="username" type="text" name="username", value={{username}}>
-        <div style="display:inline-block; color:red;" class="error">{{username_error}}</div>
+        <div style="color:red;" class="error">{{username_error}}</div>
 
         <label for="password">Password</label>
         <input id="password" type="password" name="password" />
-        <div style="display:inline-block; color: red;" class="error">{{password_error}}</div>
+        <div style="color: red;" class="error">{{password_error}}</div>
+        <div style="color:red;" class="error">{{match_error}}</div>
+        <div style="color:red;" class="error">{{length_error}}</div>
+        <div style="color:red;" class="error">{{space_error}}</div>
 
         <label for="verify">Verify</label>
         <input id="verify" type="password" name="verify" />
-        <div style="display:inline-block; color: red;" class="error">{{verify_error}}</div>
+        <div style="color: red;" class="error">{{verify_error}}</div>
 
         <label for="email">Email</label>
         <input id="email" type="text" name="email", value={{email}} >
+        <div style="color: blue;" class="error">{{email_ask}}</div>
 
         <input type="submit" value="I'm Ready!" />
       </form>
