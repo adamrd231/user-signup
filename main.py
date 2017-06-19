@@ -1,6 +1,4 @@
 from flask import Flask, request, redirect, render_template
-import cgi
-import os
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -94,7 +92,5 @@ def sign_up():
                                      space_error=space_error,
                                      email_error=email_error
                                      )
-
-
 
 app.run()
