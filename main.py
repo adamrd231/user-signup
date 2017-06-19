@@ -3,11 +3,6 @@ from flask import Flask, request, redirect, render_template
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-@app.route("/")
-def index():
-    return render_template("user-signup.html")
-
-
 def isEmpty(s):
     if s == "":
         return True
@@ -34,63 +29,66 @@ def emailValid(email):
     else:
         return False
 
-@app.route("/", methods=['POST'])
+
+@app.route("/", methods=['POST', 'GET'])
 def sign_up():
-    username = request.form[('username')]
-    password = request.form[('password')]
-    verify = request.form[('verify')]
-    email = request.form[('email')]
-
-    username_error = ""
-    password_error = ""
-    verify_error = ""
-    match_error = ""
-    length_error = ""
-    email_ask = ""
-    space_error = ""
-    email_error = ""
-
-    if isEmpty(email):
-        email_ask = "Any chance you could enter that email?"
-
-    if isEmpty(username):
-        username_error = "Please Enter Your Username"
-
-    if isEmpty(password):
-        password_error = "Please Enter Your Password"
-
-    if isEmpty(verify):
-        verify_error = "Please Verify Your Password"
-
-    if not ifMatch(password, verify):
-        match_error = "The passwords do not match"
-
-    if len(password) < 3 or len(password) > 20:
-        length_error = "The password must be at least 3 characters or less than 21"
-
-    if noSpace(password) == True:
-        space_error = "Please do not enter spaces in your password"
-
-    if emailValid(email) == False:
-        email_error = "Email must include a '@' and '.' "
+    if request.method == 'GET':
+        return render_template("user-signup.html")
 
 
+    if request.method == 'POST':
+        username = request.form[('username')]
+        password = request.form[('password')]
+        verify = request.form[('verify')]
+        email = request.form[('email')]
 
+        username_error = ""
+        password_error = ""
+        verify_error = ""
+        match_error = ""
+        length_error = ""
+        email_ask = ""
+        space_error = ""
+        email_error = ""
 
-    if not username_error and not password_error and not verify_error and password == verify and len(password) > 2 and noSpace(password) == False and emailValid(email) == True:
-        return render_template('/welcome.html', username=username)
-    else:
-        return render_template('user-signup.html',
-                                     username=username,
-                                     email=email,
-                                     username_error=username_error,
-                                     password_error=password_error,
-                                     verify_error=verify_error,
-                                     match_error=match_error,
-                                     length_error=length_error,
-                                     email_ask=email_ask,
-                                     space_error=space_error,
-                                     email_error=email_error
-                                     )
+        if isEmpty(email):
+            email_ask = "Any chance you could enter that email?"
+
+        if isEmpty(username):
+            username_error = "Please Enter Your Username"
+
+        if isEmpty(password):
+            password_error = "Please Enter Your Password"
+
+        if isEmpty(verify):
+            verify_error = "Please Verify Your Password"
+
+        if not ifMatch(password, verify):
+            match_error = "The passwords do not match"
+
+        if len(password) < 3 or len(password) > 20:
+            length_error = "The password must be at least 3 characters or less than 21"
+
+        if noSpace(password) == True:
+            space_error = "Please do not enter spaces in your password"
+
+        if emailValid(email) == False:
+            email_error = "Email must include a '@' and '.' "
+
+        if not username_error and not password_error and not verify_error and password == verify and len(password) > 2 and noSpace(password) == False and emailValid(email) == True:
+            return render_template('/welcome.html', username=username)
+        else:
+            return render_template('user-signup.html',
+                                         username=username,
+                                         email=email,
+                                         username_error=username_error,
+                                         password_error=password_error,
+                                         verify_error=verify_error,
+                                         match_error=match_error,
+                                         length_error=length_error,
+                                         email_ask=email_ask,
+                                         space_error=space_error,
+                                         email_error=email_error
+                                         )
 
 app.run()
