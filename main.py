@@ -29,6 +29,8 @@ def noSpace(str):
         return False
 
 def emailValid(email):
+    if email == "":
+        return True
     if "." in email and "@" in email:
         return True
     else:
@@ -48,6 +50,7 @@ def sign_up():
     length_error = ""
     email_ask = ""
     space_error = ""
+    email_error = ""
 
     if isEmpty(email):
         email_ask = "Any chance you could enter that email?"
@@ -70,20 +73,27 @@ def sign_up():
     if noSpace(password) == True:
         space_error = "Please do not enter spaces in your password"
 
-    if not username_error and not password_error and not verify_error and password == verify and len(password) > 2 and noSpace(password) == False:
+    if emailValid(email) == False:
+        email_error = "Email must include a '@' and '.' "
+
+
+
+
+    if not username_error and not password_error and not verify_error and password == verify and len(password) > 2 and noSpace(password) == False and emailValid(email) == True:
         return render_template('/welcome.html', username=username)
     else:
         return render_template('user-signup.html',
-                                 username=username,
-                                 email=email,
-                                 username_error=username_error,
-                                 password_error=password_error,
-                                 verify_error=verify_error,
-                                 match_error=match_error,
-                                 length_error=length_error,
-                                 email_ask=email_ask,
-                                 space_error=space_error
-                                 )
+                                     username=username,
+                                     email=email,
+                                     username_error=username_error,
+                                     password_error=password_error,
+                                     verify_error=verify_error,
+                                     match_error=match_error,
+                                     length_error=length_error,
+                                     email_ask=email_ask,
+                                     space_error=space_error,
+                                     email_error=email_error
+                                     )
 
 
 
