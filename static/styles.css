@@ -1,0 +1,73 @@
+* {
+  font-family: helvetica;
+}
+
+.main {
+  width: 90%;
+  margin: auto;
+}
+
+table {
+  width: 60em;
+}
+
+.first_row {
+  width: 2em;
+}
+
+.second_row {
+  width: 15em;
+}
+
+.third_row, .fourth_row, .fifth_row, .sixth_row {
+  width:30em;
+}
+
+
+input {
+  width: 20em;
+  align-items: center;
+  text-align: center;
+}
+
+label {
+  color: #333;
+
+}
+
+h1 {
+  font-family: raleway;
+  font-size: 3em;
+}
+
+td {
+    text-align: right;
+    padding-right:2%;
+}
+
+th {
+  padding-bottom: 1.5%;
+  font-family: raleway;
+  font-size: 1.5em;
+}
+
+#button {
+  border-radius: 1em;
+  background-color: #333;
+  color: #dedede;
+  border: none;
+  font-family: raleway;
+  font-size: 1em;
+  padding: 4%;
+  margin-top: 3%;
+}
+
+.error {
+  color: red;
+  text-align:left;
+}
+
+.ask {
+  color: blue;
+  text-align:left;
+}

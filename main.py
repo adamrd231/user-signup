@@ -66,8 +66,8 @@ def sign_up():
         if not ifMatch(password, verify):
             match_error = "The passwords do not match"
 
-        if len(password) < 3 or len(password) > 20:
-            length_error = "The password must be at least 3 characters or less than 21"
+        if len(password) not in range(3,21) and len(password) != 0:
+            length_error = "The password should be in between 3 and 20 characters."
 
         if noSpace(password) == True:
             space_error = "Please do not enter spaces in your password"
